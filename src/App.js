@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import "react-loading-skeleton/dist/skeleton.css";
+import { ProtectedRoute, ShareLayou } from "./Components";
+import { About, Details, Home, Login, Property } from "./Pages";
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<ShareLayou />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="property" element={<Property />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="detail/:name" element={<Details />} />
+          </Route>
+        </Route>
+        <Route path="login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 
