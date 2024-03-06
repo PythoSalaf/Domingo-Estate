@@ -6,9 +6,8 @@
 
 body {
   scroll-behavior: smooth;
- overflow-x: hidden;
+  overflow-x: hidden;
 }
-
 
 @tailwind base;
 @tailwind components;
